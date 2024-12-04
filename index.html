@@ -51,6 +51,7 @@
             border-radius: 4px;
         }
         .results {
+            display: none;
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
@@ -90,50 +91,36 @@
             let q13 = parseFloat(document.getElementById("q13").value) || 0;
 
             let subject = document.getElementById("subject").value;
+            let resultsContainer = document.querySelector(".results");
+
+            if (!subject) {
+                // Hide results if no subject is selected
+                resultsContainer.style.display = "none";
+                return;
+            }
+
+            // Show results container
+            resultsContainer.style.display = "block";
 
             // Initialize CO totals
             let c01 = 0, c02 = 0, c03 = 0, c04 = 0, c05 = 0;
 
-            // Calculate CO totals based on selected subject
             if (subject === "backend") {
                 c01 = q1;
                 c02 = q2 + q3 + q5 + q6 + q10;
                 c03 = q4 + q8 + q9;
                 c04 = q7 + q12 + q13;
                 c05 = q11;
-                // Hide CO1 for backend subject if needed
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "block";
-                document.querySelector(".c05").style.display = "block";
             } else if (subject === "deep_learning") {
                 c02 = q1;
                 c03 = q6 + q10;
                 c04 = q2 + q3 + q5 + q7 + q9;
                 c05 = q4 + q8 + q11 + q12 + q13;
-                // Hide CO1 for deep learning subject
-                document.querySelector(".c01").style.display = "none";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "block";
-                document.querySelector(".c05").style.display = "block";
             } else if (subject === "network_security") {
                 c01 = q1 + q2 + q4 + q5 + q7;
                 c02 = q6 + q8;
                 c03 = q3 + q9 + q10 + q11 + q12 + q13;
-                c04 = 0; // No CO4 for network_security
-                c05 = 0; // No CO5 for network_security
-                // Hide CO1, CO4, and CO5 for network_security subject
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "none";
-                document.querySelector(".c05").style.display = "none";
             }
-
-            // Calculate overall total
-            let total = c01 + c02 + c03 + c04 + c05;
 
             // Update the output fields
             document.getElementById("c01").textContent = c01;
@@ -141,19 +128,13 @@
             document.getElementById("c03").textContent = c03;
             document.getElementById("c04").textContent = c04;
             document.getElementById("c05").textContent = c05;
-            document.getElementById("total").textContent = total;
+            document.getElementById("total").textContent = c01 + c02 + c03 + c04 + c05;
         }
 
         function resetForm() {
-            // Clear input fields and reset results
             document.querySelectorAll("input[type='number']").forEach(input => input.value = "");
-            document.getElementById("c01").textContent = "0";
-            document.getElementById("c02").textContent = "0";
-            document.getElementById("c03").textContent = "0";
-            document.getElementById("c04").textContent = "0";
-            document.getElementById("c05").textContent = "0";
-            document.getElementById("total").textContent = "0";
-            calculateTotals();
+            document.getElementById("subject").selectedIndex = 0; // Reset subject selection
+            document.querySelector(".results").style.display = "none"; // Hide results
         }
     </script>
 </head>
@@ -168,7 +149,7 @@
             <option value="">--Select Subject--</option>
             <option value="backend">Backend</option>
             <option value="deep_learning">Deep Learning</option>
-            <option value="network_security">Security and Cryptography(22CSH-349)</option>
+            <option value="network_security">Network Security</option>
         </select>
         <label>Q1: <input type="number" id="q1" step="any"></label>
         <label>Q2: <input type="number" id="q2" step="any"></label>
