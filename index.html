@@ -141,6 +141,16 @@
                 document.querySelector(".c04").style.display = "none";
                 document.querySelector(".c05").style.display = "none";
             }
+            else if (subject === "eco") {
+                c01 = q1 + q6 + q10;
+                c02 = q2 + q11 ;
+                c05 =  q3 + q4 + q8 + q9 + q12 + q13 + q5;
+                document.querySelector(".c01").style.display = "block";
+                document.querySelector(".c02").style.display = "block";
+                document.querySelector(".c03").style.display = "none";
+                document.querySelector(".c04").style.display = "none";
+                document.querySelector(".c05").style.display = "block";
+            }
             
             // Update the output fields
             document.getElementById("c01").textContent = c01;
@@ -171,6 +181,7 @@
             <option value="deep_learning">Deep Learning</option>
             <option value="network_security">Security and Cryptography(22CSH-349)</option>
             <option value="CV">Computer Vision(22CSH-349)</option>
+            <option value="eco">Foundation Course in Wireless and Mobile(ECO-455)</option>
         </select>
         <label>Q1: <input type="number" id="q1" step="any"></label>
         <label>Q2: <input type="number" id="q2" step="any"></label>
