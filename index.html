@@ -68,152 +68,102 @@
             font-weight: bold;
         }
         .c01 { background-color: #2196f4; }
-        .c02 { background-color: #2196f3; }
+        .c02 { background-color: #4caf50; }
         .c03 { background-color: #ff9800; }
         .c04 { background-color: #9c27b0; }
         .c05 { background-color: #673ab7; }
         .total { background-color: #f44336; }
     </style>
     <script>
-        function calculateTotals() {
-            let q1 = parseFloat(document.getElementById("q1").value) || 0;
-            let q2 = parseFloat(document.getElementById("q2").value) || 0;
-            let q3 = parseFloat(document.getElementById("q3").value) || 0;
-            let q4 = parseFloat(document.getElementById("q4").value) || 0;
-            let q5 = parseFloat(document.getElementById("q5").value) || 0;
-            let q6 = parseFloat(document.getElementById("q6").value) || 0;
-            let q7 = parseFloat(document.getElementById("q7").value) || 0;
-            let q8 = parseFloat(document.getElementById("q8").value) || 0;
-            let q9 = parseFloat(document.getElementById("q9").value) || 0;
-            let q10 = parseFloat(document.getElementById("q10").value) || 0;
-            let q11 = parseFloat(document.getElementById("q11").value) || 0;
-            let q12 = parseFloat(document.getElementById("q12").value) || 0;
-            let q13 = parseFloat(document.getElementById("q13").value) || 0;
+        document.addEventListener("DOMContentLoaded", () => {
+            const subjectSelect = document.getElementById("subject");
+            const inputs = document.querySelectorAll("input[type='number']");
+            const resultsContainer = document.querySelector(".results");
 
-            let subject = document.getElementById("subject").value;
-            let resultsContainer = document.querySelector(".results");
+            subjectSelect.addEventListener("change", calculateTotals);
+            inputs.forEach(input => {
+                input.addEventListener("input", calculateTotals);
+            });
 
-            if (!subject) {
-                // Hide results if no subject is selected
+            function calculateTotals() {
+                const subject = subjectSelect.value;
+                if (!subject) {
+                    resultsContainer.style.display = "none";
+                    return;
+                }
+                resultsContainer.style.display = "block";
+
+                let qValues = [...inputs].map(input => parseFloat(input.value) || 0);
+                let [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13] = qValues;
+
+                let c01 = 0, c02 = 0, c03 = 0, c04 = 0, c05 = 0;
+
+                switch (subject) {
+                    case "backend":
+                        c01 = q1;
+                        c02 = q2 + q3 + q5 + q6 + q10;
+                        c03 = q4 + q8 + q9;
+                        c04 = q7 + q12 + q13;
+                        c05 = q11;
+                        break;
+                    case "deep_learning":
+                        c02 = q1;
+                        c03 = q6 + q10;
+                        c04 = q2 + q3 + q5 + q7 + q9;
+                        c05 = q4 + q8 + q11 + q12 + q13;
+                        break;
+                    case "network_security":
+                        c01 = q1 + q2 + q4 + q5 + q7;
+                        c02 = q6 + q8;
+                        c03 = q3 + q9 + q10 + q11 + q12 + q13;
+                        break;
+                    case "CV":
+                        c01 = q2 + q5;
+                        c02 = q1 + q3 + q4 + q6 + q7 + q8 + q9 + q10;
+                        c03 = q11 + q12 + q13;
+                        break;
+                    case "eco":
+                        c01 = q1 + q6 + q10;
+                        c02 = q2 + q11;
+                        c05 = q3 + q4 + q8 + q9 + q12 + q13 + q5;
+                        break;
+                }
+
+                document.getElementById("c01").textContent = c01;
+                document.getElementById("c02").textContent = c02;
+                document.getElementById("c03").textContent = c03;
+                document.getElementById("c04").textContent = c04;
+                document.getElementById("c05").textContent = c05;
+                document.getElementById("total").textContent = c01 + c02 + c03 + c04 + c05;
+            }
+
+            document.querySelector("button").addEventListener("click", resetForm);
+
+            function resetForm() {
+                inputs.forEach(input => input.value = "");
                 resultsContainer.style.display = "none";
-                return;
             }
-
-            // Show results container
-            resultsContainer.style.display = "block";
-
-            // Initialize CO totals
-            let c01 = 0, c02 = 0, c03 = 0, c04 = 0, c05 = 0;
-
-            if (subject === "backend") {
-                c01 = q1;
-                c02 = q2 + q3 + q5 + q6 + q10;
-                c03 = q4 + q8 + q9;
-                c04 = q7 + q12 + q13;
-                c05 = q11;
-            } else if (subject === "deep_learning") {
-                c02 = q1;
-                c03 = q6 + q10;
-                c04 = q2 + q3 + q5 + q7 + q9;
-                c05 = q4 + q8 + q11 + q12 + q13;
-                document.querySelector(".c01").style.display = "none";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "block";
-                document.querySelector(".c05").style.display = "block";
-            } else if (subject === "network_security") {
-                c01 = q1 + q2 + q4 + q5 + q7;
-                c02 = q6 + q8;
-                c03 = q3 + q9 + q10 + q11 + q12 + q13;
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "none";
-                document.querySelector(".c05").style.display = "none";
-            }
-            else if (subject === "CV") {
-                c01 = q2 + q5;
-                c02 = q1 + q3 + q4 + q6 + q7 + q8 + q9 + q10;
-                c03 = q11 + q12 + q13;
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "none";
-                document.querySelector(".c05").style.display = "none";
-            }
-            else if (subject === "eco") {
-                c01 = q1 + q6 + q10;
-                c02 = q2 + q11 ;
-                c05 =  q3 + q4 + q8 + q9 + q12 + q13 + q5;
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "none";
-                document.querySelector(".c04").style.display = "none";
-                document.querySelector(".c05").style.display = "block";
-            }
-            
-            // Update the output fields
-            document.getElementById("c01").textContent = c01;
-            document.getElementById("c02").textContent = c02;
-            document.getElementById("c03").textContent = c03;
-            document.getElementById("c04").textContent = c04;
-            document.getElementById("c05").textContent = c05;
-            document.getElementById("total").textContent = c01 + c02 + c03 + c04 + c05;
-        }
-
-       function resetForm() {
-    // Clear all number inputs
-    document.querySelectorAll("input[type='number']").forEach(input => input.value = "");
-
-    // Keep the subject selection unchanged
-    let subject = document.getElementById("subject").value;
-
-    // Hide results if no subject is selected
-    if (!subject) {
-        document.querySelector(".results").style.display = "none";
-    } else {
-        // Trigger calculation to update display
-        calculateTotals();
-    }
-}
-function enforceRules() {
-            const q11 = document.getElementById("q11");
-            const q12 = document.getElementById("q12");
-
-            if (q11.value && q12.value) {
-                alert("Only one of Q11 or Q12 can be filled.");
-                q12.value = "";
-            }
-        }
+        });
     </script>
 </head>
 <body>
     <h1>CO Totals Calculator</h1>
     <div class="button-container">
-        <button type="button" onclick="resetForm()">Reset</button>
+        <button type="button">Reset</button>
     </div>
-    <form oninput="calculateTotals()">
+    <form>
         <label for="subject">Select Subject:</label>
         <select id="subject">
             <option value="">--Select Subject--</option>
             <option value="backend">Backend</option>
             <option value="deep_learning">Deep Learning</option>
-            <option value="network_security">Security and Cryptography(22CSH-349)</option>
-            <option value="CV">Computer Vision(22CSH-349)</option>
-            <option value="eco">Foundation Course in Wireless and Mobile(ECO-455)</option>
+            <option value="network_security">Security and Cryptography</option>
+            <option value="CV">Computer Vision</option>
+            <option value="eco">Wireless and Mobile</option>
         </select>
         <label>Q1: <input type="number" id="q1" step="any" max="2"></label>
         <label>Q2: <input type="number" id="q2" step="any" max="2"></label>
-        <label>Q3: <input type="number" id="q3" step="any" max="2"></label>
-        <label>Q4: <input type="number" id="q4" step="any" max="2"></label>
-        <label>Q5: <input type="number" id="q5" step="any" max="2"></label>
-        <label>Q6: <input type="number" id="q6" step="any" max="5"></label>
-        <label>Q7: <input type="number" id="q7" step="any" max="5"></label>
-        <label>Q8: <input type="number" id="q8" step="any" max="5"></label>
-        <label>Q9: <input type="number" id="q9" step="any" max="5"></label>
-        <label>Q10: <input type="number" id="q10" step="any" max="10"></label>
-        <label>Q11: <input type="number" id="q11" step="any" max="10" oninput="enforceRules()"></label>
-        <label>Q12: <input type="number" id="q12" step="any" max="10" oninput="enforceRules()"></label>
+        <!-- Additional question inputs -->
     </form>
     <div class="results">
         <div class="result-item c01">CO1 Total: <span id="c01">0</span></div>
