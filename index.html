@@ -176,7 +176,15 @@
         calculateTotals();
     }
 }
+function enforceRules() {
+            const q11 = document.getElementById("q11");
+            const q12 = document.getElementById("q12");
 
+            if (q11.value && q12.value) {
+                alert("Only one of Q11 or Q12 can be filled.");
+                q12.value = "";
+            }
+        }
     </script>
 </head>
 <body>
@@ -194,19 +202,18 @@
             <option value="CV">Computer Vision(22CSH-349)</option>
             <option value="eco">Foundation Course in Wireless and Mobile(ECO-455)</option>
         </select>
-        <label>Q1: <input type="number" id="q1" step="any"></label>
-        <label>Q2: <input type="number" id="q2" step="any"></label>
-        <label>Q3: <input type="number" id="q3" step="any"></label>
-        <label>Q4: <input type="number" id="q4" step="any"></label>
-        <label>Q5: <input type="number" id="q5" step="any"></label>
-        <label>Q6: <input type="number" id="q6" step="any"></label>
-        <label>Q7: <input type="number" id="q7" step="any"></label>
-        <label>Q8: <input type="number" id="q8" step="any"></label>
-        <label>Q9: <input type="number" id="q9" step="any"></label>
-        <label>Q10: <input type="number" id="q10" step="any"></label>
-        <label>Q11: <input type="number" id="q11" step="any"></label>
-        <label>Q12: <input type="number" id="q12" step="any"></label>
-        <label>Q13: <input type="number" id="q13" step="any"></label>
+        <label>Q1: <input type="number" id="q1" step="any" max="2"></label>
+        <label>Q2: <input type="number" id="q2" step="any" max="2"></label>
+        <label>Q3: <input type="number" id="q3" step="any" max="2"></label>
+        <label>Q4: <input type="number" id="q4" step="any" max="2"></label>
+        <label>Q5: <input type="number" id="q5" step="any" max="2"></label>
+        <label>Q6: <input type="number" id="q6" step="any" max="5"></label>
+        <label>Q7: <input type="number" id="q7" step="any" max="5"></label>
+        <label>Q8: <input type="number" id="q8" step="any" max="5"></label>
+        <label>Q9: <input type="number" id="q9" step="any" max="5"></label>
+        <label>Q10: <input type="number" id="q10" step="any" max="10"></label>
+        <label>Q11: <input type="number" id="q11" step="any" max="10" oninput="enforceRules()"></label>
+        <label>Q12: <input type="number" id="q12" step="any" max="10" oninput="enforceRules()"></label>
     </form>
     <div class="results">
         <div class="result-item c01">CO1 Total: <span id="c01">0</span></div>
