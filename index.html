@@ -156,6 +156,16 @@
             document.getElementById("c05").textContent = c05;
             document.getElementById("total").textContent = c01 + c02 + c03 + c04 + c05;
         }
+        else if (subject === "mst_1") {
+                c01 = q1 + q2 + q5;
+                c02 = q3 + q6;
+                c04 = q4+ q7;
+                document.querySelector(".c01").style.display = "block";
+                document.querySelector(".c02").style.display = "block";
+                document.querySelector(".c04").style.display = "none";
+                
+            }
+            
 
         function resetForm() {
     // Reset all input fields, but keep the subject selection intact
@@ -208,6 +218,7 @@ Total: ${document.getElementById("total").textContent}`;
             <option value="network_security">Security and Cryptography(22CSH-349)</option>
             <option value="CV">Computer Vision(22CSH-349)</option>
             <option value="eco">Foundation Course in Wireless and Mobile(ECO-455)</option>
+            <option value="mst_1">MST_1</option>
         </select>
         <button type="button" onclick="resetForm()">Reset</button>
         
