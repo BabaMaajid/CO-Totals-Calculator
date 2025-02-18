@@ -148,6 +148,16 @@
                 document.querySelector(".c04").style.display = "none";
                 document.querySelector(".c05").style.display = "block";
             }
+            else if (subject === "mst_1") {
+                c01 = q1 + q2 + q5;
+                c02 = q3 + q6;
+                c05 =  q4 + q7;
+                document.querySelector(".c01").style.display = "block";
+                document.querySelector(".c02").style.display = "block";
+
+                document.querySelector(".c04").style.display = "none";
+
+            }
             
             document.getElementById("c01").textContent = c01;
             document.getElementById("c02").textContent = c02;
@@ -208,6 +218,7 @@ Total: ${document.getElementById("total").textContent}`;
             <option value="network_security">Security and Cryptography(22CSH-349)</option>
             <option value="CV">Computer Vision(22CSH-349)</option>
             <option value="eco">Foundation Course in Wireless and Mobile(ECO-455)</option>
+            <option value="mst_1">DA_MST</option>
         </select>
         <button type="button" onclick="resetForm()">Reset</button>
         
