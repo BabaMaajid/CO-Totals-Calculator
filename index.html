@@ -38,10 +38,7 @@
             margin-top: 10px;
             cursor: pointer;
         }
-        .inputs {
-            display: none;
-        }
-        .results {
+        .inputs, .results {
             display: none;
             max-width: 400px;
             margin: 0 auto;
@@ -64,7 +61,7 @@
         .c04 { background-color: #9c27b0; }
         .c05 { background-color: #673ab7; }
         .total { background-color: #f44336; }
-.copyright {
+        .copyright {
             text-align: center;
             margin-top: 20px;
             font-size: 12px;
@@ -73,137 +70,52 @@
     </style>
     <script>
         function updateTotals() {
-            let q1 = parseFloat(document.getElementById("q1").value) || 0;
-            let q2 = parseFloat(document.getElementById("q2").value) || 0;
-            let q3 = parseFloat(document.getElementById("q3").value) || 0;
-            let q4 = parseFloat(document.getElementById("q4").value) || 0;
-            let q5 = parseFloat(document.getElementById("q5").value) || 0;
-            let q6 = parseFloat(document.getElementById("q6").value) || 0;
-            let q7 = parseFloat(document.getElementById("q7").value) || 0;
-            let q8 = parseFloat(document.getElementById("q8").value) || 0;
-            let q9 = parseFloat(document.getElementById("q9").value) || 0;
-            let q10 = parseFloat(document.getElementById("q10").value) || 0;
-            let q11 = parseFloat(document.getElementById("q11").value) || 0;
-            let q12 = parseFloat(document.getElementById("q12").value) || 0;
-            let q13 = parseFloat(document.getElementById("q13").value) || 0;
+            let values = [];
+            for (let i = 1; i <= 13; i++) {
+                values[i] = parseFloat(document.getElementById(`q${i}`).value) || 0;
+            }
 
             let subject = document.getElementById("subject").value;
             let resultsContainer = document.querySelector(".results");
-
+            let categories = { c01: 0, c02: 0, c03: 0, c04: 0, c05: 0 };
+            document.querySelectorAll(".result-item").forEach(item => item.style.display = "none");
+            
             if (!subject) {
                 resultsContainer.style.display = "none";
                 return;
             }
-
             resultsContainer.style.display = "block";
 
-            let c01 = 0, c02 = 0, c03 = 0, c04 = 0, c05 = 0;
-
-            if (subject === "backend") {
-                c01 = q1;
-                c02 = q2 + q3 + q5 + q6 + q10;
-                c03 = q4 + q8 + q9;
-                c04 = q7 + q12 + q13;
-                c05 = q11;
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "block";
-                document.querySelector(".c05").style.display = "block";
-            } else if (subject === "deep_learning") {
-                c02 = q1;
-                c03 = q6 + q10;
-                c04 = q2 + q3 + q5 + q7 + q9;
-                c05 = q4 + q8 + q11 + q12 + q13;
-              document.querySelector(".c01").style.display = "none";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "block";
-                document.querySelector(".c05").style.display = "block";
-            } else if (subject === "network_security") {
-                c01 = q1 + q2 + q4 + q5 + q7;
-                c02 = q6 + q8;
-                c03 = q3 + q9 + q10 + q11 + q12 + q13;
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "none";
-                document.querySelector(".c05").style.display = "none";
-            } else if (subject === "CV") {
-                c01 = q2 + q5;
-                c02 = q1 + q3 + q4 + q6 + q7 + q8 + q9 + q10;
-                c03 = q11 + q12 + q13;
-               document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "none";
-                document.querySelector(".c05").style.display = "none";
-            } else if (subject === "eco") {
-                c01 = q1 + q6 + q10;
-                c02 = q2 + q11;
-                c05 = q3 + q4 + q8 + q9 + q12 + q13 + q5;
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "none";
-                document.querySelector(".c04").style.display = "none";
-                document.querySelector(".c05").style.display = "block";
-            }
-             else if (subject === "mst_1") {
-                c01 = q1 + q2 + q5;
-                c02 = q3 + q6;
-                c04 = q4+ q7;
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c04").style.display = "none";
-                
-            }
+            const rules = {
+                backend: { c01: [1], c02: [2, 3, 5, 6, 10], c03: [4, 8, 9], c04: [7, 12, 13], c05: [11] },
+                deep_learning: { c02: [1], c03: [6, 10], c04: [2, 3, 5, 7, 9], c05: [4, 8, 11, 12, 13] },
+                network_security: { c01: [1, 2, 4, 5, 7], c02: [6, 8], c03: [3, 9, 10, 11, 12, 13] },
+                CV: { c01: [2, 5], c02: [1, 3, 4, 6, 7, 8, 9, 10], c03: [11, 12, 13] },
+                eco: { c01: [1, 6, 10], c02: [2, 11], c05: [3, 4, 5, 8, 9, 12, 13] },
+                mst_1: { c01: [1, 2, 5], c02: [3, 6], c04: [4, 7] }
+            };
             
-            document.getElementById("c01").textContent = c01;
-            document.getElementById("c02").textContent = c02;
-            document.getElementById("c03").textContent = c03;
-            document.getElementById("c04").textContent = c04;
-            document.getElementById("c05").textContent = c05;
-            document.getElementById("total").textContent = c01 + c02 + c03 + c04 + c05;
+            for (let key in rules[subject]) {
+                categories[key] = rules[subject][key].reduce((sum, q) => sum + values[q], 0);
+                document.querySelector("." + key).style.display = "block";
+            }
+
+            for (let key in categories) {
+                document.getElementById(key).textContent = categories[key];
+            }
+            document.getElementById("total").textContent = Object.values(categories).reduce((a, b) => a + b, 0);
         }
-       
-
+        
         function resetForm() {
-    // Reset all input fields, but keep the subject selection intact
-    let inputs = document.querySelectorAll(".inputs input[type='number']");
-    inputs.forEach(input => input.value = "");
-    
-    // Optionally, hide results until new calculations are done
-    document.querySelector(".results").style.display = "none";
-    
-    // Keep the subject dropdown value as is
-    document.querySelector(".results").style.display = "none";
-    updateTotals();  // Recalculate totals with the current subject selection
-}
-
-
-        function copyResults() {
-            let results = `
-C01: ${document.getElementById("c01").textContent}
-C02: ${document.getElementById("c02").textContent}
-C03: ${document.getElementById("c03").textContent}
-C04: ${document.getElementById("c04").textContent}
-C05: ${document.getElementById("c05").textContent}
-Total: ${document.getElementById("total").textContent}`;
-            navigator.clipboard.writeText(results).then(() => {
-                alert("Results copied to clipboard!");
-            });
+            document.querySelectorAll(".inputs input").forEach(input => input.value = "");
+            document.querySelectorAll(".result-item").forEach(item => item.style.display = "none");
+            document.querySelector(".results").style.display = "none";
         }
 
         function toggleInputs() {
             let subject = document.getElementById("subject").value;
-            let inputsContainer = document.querySelector(".inputs");
-
-            if (subject) {
-                inputsContainer.style.display = "block";
-            } else {
-                inputsContainer.style.display = "none";
-                document.querySelector(".results").style.display = "none";
-            }
+            document.querySelector(".inputs").style.display = subject ? "block" : "none";
+            updateTotals();
         }
     </script>
 </head>
@@ -211,7 +123,7 @@ Total: ${document.getElementById("total").textContent}`;
     <h1>CO Totals Calculator</h1>
     <form>
         <label for="subject">Select Subject:</label>
-        <select id="subject" onchange="toggleInputs(); updateTotals();">
+        <select id="subject" onchange="toggleInputs();">
             <option value="">--Select Subject--</option>
             <option value="backend">Backend</option>
             <option value="deep_learning">Deep Learning</option>
@@ -221,22 +133,8 @@ Total: ${document.getElementById("total").textContent}`;
             <option value="mst_1">MST_1</option>
         </select>
         <button type="button" onclick="resetForm()">Reset</button>
-        
-
         <div class="inputs">
-            <label>Q1: <input type="number" id="q1" step="any" oninput="updateTotals()"></label>
-            <label>Q2: <input type="number" id="q2" step="any" oninput="updateTotals()"></label>
-            <label>Q3: <input type="number" id="q3" step="any" oninput="updateTotals()"></label>
-            <label>Q4: <input type="number" id="q4" step="any" oninput="updateTotals()"></label>
-            <label>Q5: <input type="number" id="q5" step="any" oninput="updateTotals()"></label>
-            <label>Q6: <input type="number" id="q6" step="any" oninput="updateTotals()"></label>
-            <label>Q7: <input type="number" id="q7" step="any" oninput="updateTotals()"></label>
-            <label>Q8: <input type="number" id="q8" step="any" oninput="updateTotals()"></label>
-            <label>Q9: <input type="number" id="q9" step="any" oninput="updateTotals()"></label>
-            <label>Q10: <input type="number" id="q10" step="any" oninput="updateTotals()"></label>
-            <label>Q11: <input type="number" id="q11" step="any" oninput="updateTotals()"></label>
-            <label>Q12: <input type="number" id="q12" step="any" oninput="updateTotals()"></label>
-            <label>Q13: <input type="number" id="q13" step="any" oninput="updateTotals()"></label>
+            <label>Q1-13: <input type="number" id="q1" step="any" oninput="updateTotals()"></label>
         </div>
     </form>
     <div class="results">
@@ -247,6 +145,6 @@ Total: ${document.getElementById("total").textContent}`;
         <div class="result-item c05">C05: <span id="c05"></span></div>
         <div class="result-item total">Total: <span id="total"></span></div>
     </div>
-<div class="copyright">© Maajid Bashir 2024</div>
+    <div class="copyright">© Maajid Bashir 2024</div>
 </body>
 </html>
