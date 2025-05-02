@@ -99,19 +99,14 @@
 
             let c01 = 0, c02 = 0, c03 = 0, c04 = 0, c05 = 0;
 
-            if (subject === "backend") {
+            if (subject === "DAA") {
                 c01 = q1;
-                c02 = q2 + q3 + q5 + q6 + q10;
-                c03 = q4 + q8 + q9;
-                c04 = q7 + q12 + q13;
-                c05 = q11;
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "block";
-                document.querySelector(".c05").style.display = "block";
-            } else if (subject === "deep_learning") {
-                c02 = q1;
+                c02 = q6;
+                c03 = q10;
+                c04 = q2+q3+q7+q11;
+                c05 = q4+q5+q8+q9+q12+q13;
+            } else if (subject === "Backend") {
+                c01 = q1;
                 c03 = q6 + q10;
                 c04 = q2 + q3 + q5 + q7 + q9;
                 c05 = q4 + q8 + q11 + q12 + q13;
@@ -147,17 +142,6 @@
                 document.querySelector(".c03").style.display = "none";
                 document.querySelector(".c04").style.display = "none";
                 document.querySelector(".c05").style.display = "block";
-            }
-            else if (subject === "mst_1") {
-                c01 = q1 + q2 + q5;
-                c02 = q3 + q6;
-                c04 =  q4 + q7;
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "none";
-                document.querySelector(".c04").style.display = "block";
-                document.querySelector(".c05").style.display = "none";
-
             }
             
             document.getElementById("c01").textContent = c01;
@@ -214,12 +198,11 @@ Total: ${document.getElementById("total").textContent}`;
         <label for="subject">Select Subject:</label>
         <select id="subject" onchange="toggleInputs(); updateTotals();">
             <option value="">--Select Subject--</option>
-            <option value="backend">Backend</option>
+            <option value="DAA">DAA</option>
             <option value="deep_learning">Deep Learning</option>
             <option value="network_security">Security and Cryptography(22CSH-349)</option>
             <option value="CV">Computer Vision(22CSH-349)</option>
             <option value="eco">Foundation Course in Wireless and Mobile(ECO-455)</option>
-            <option value="mst_1">DA_MST</option>
         </select>
         <button type="button" onclick="resetForm()">Reset</button>
         
