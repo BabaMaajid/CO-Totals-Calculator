@@ -143,16 +143,16 @@
                 document.querySelector(".c04").style.display = "block";
                 document.querySelector(".c05").style.display = "none";
             } else if (subject === "CA") {
-                c01 = q1;
-                c02 = q2 + q6+q10;
-                c03 =q3+q5+q8+q11;
-                c04= q7+q9;
-                c05 = q4+q12+q13;
+                c01 = q1+q2+q3+q4;
+                c02 = q5 + q6+q8+q9;
+                c03 =q7+q13+q12+q10+q11;
+                // c04= q7+q9;
+                // c05 = q4+q12+q13;
                 document.querySelector(".c01").style.display = "block";
                 document.querySelector(".c02").style.display = "block";
                 document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "block";
-                document.querySelector(".c05").style.display = "block";
+                document.querySelector(".c04").style.display = "none";
+                document.querySelector(".c05").style.display = "none";
             }
             
             document.getElementById("c01").textContent = c01;
