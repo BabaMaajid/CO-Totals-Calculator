@@ -154,14 +154,6 @@
                 document.querySelector(".c04").style.display = "none";
                 document.querySelector(".c05").style.display = "none";
             }
-            
-            document.getElementById("c01").textContent = c01;
-            document.getElementById("c02").textContent = c02;
-            document.getElementById("c03").textContent = c03;
-            document.getElementById("c04").textContent = c04;
-            document.getElementById("c05").textContent = c05;
-            document.getElementById("total").textContent = c01 + c02 + c03 + c04 + c05;
-        }
              else if (subject === "Python") {
                 c01 = q1+q6;
                 c02 = q7 +q8+q10;
@@ -175,6 +167,7 @@
                 document.querySelector(".c05").style.display = "block";
             }
             
+            
             document.getElementById("c01").textContent = c01;
             document.getElementById("c02").textContent = c02;
             document.getElementById("c03").textContent = c03;
@@ -182,6 +175,8 @@
             document.getElementById("c05").textContent = c05;
             document.getElementById("total").textContent = c01 + c02 + c03 + c04 + c05;
         }
+            
+          
         function resetForm() {
     // Reset all input fields, but keep the subject selection intact
     let inputs = document.querySelectorAll(".inputs input[type='number']");
