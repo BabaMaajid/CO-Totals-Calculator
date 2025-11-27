@@ -99,14 +99,15 @@
 
             let c01 = 0, c02 = 0, c03 = 0, c04 = 0, c05 = 0;
 
-            if (subject === "DV") {
-                c01 = q3+q4;
-                c02 = q6+q8+q11+q12+q13;
-                c03 = q1+q5+q7+q9+q10+q2;
+            if (subject === "HPC") {
+                c01 = q1+q4+q5;
+                c02 = q2+q3+q7+q8;
+                c03 = q6+q10+q12+q13;
+                c04=q9+q11;
                 document.querySelector(".c01").style.display = "block";
                 document.querySelector(".c02").style.display = "block";
                 document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "none";
+                document.querySelector(".c04").style.display = "block";
                 document.querySelector(".c05").style.display = "none";
             
             } else if (subject === "Java") {
