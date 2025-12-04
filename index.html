@@ -103,25 +103,25 @@
                 c01 = q1+q4+q5;
                 c02 = q2+q3+q7+q8;
                 c03 = q6+q10+q12+q13;
-                c04=q9+q11;
+                c04=  q9+q11;
                 document.querySelector(".c01").style.display = "block";
                 document.querySelector(".c02").style.display = "block";
                 document.querySelector(".c03").style.display = "block";
                 document.querySelector(".c04").style.display = "block";
                 document.querySelector(".c05").style.display = "none";
             
-            } else if (subject === "Deep") {
+            } else if (subject === "RM") {
                 
-                c01 = q6+q10;
-                c02 = q1+q2+q11;
-                c03 = q7;
-                c04 = q4+q5+q8+q9;
-                c05 = q3+q12+q13;
+                c01 = q3+q5+q7+q8+q9+q11+q10;
+                c02 = q1+q4+q12+q13;
+                c03 = q2+q6;
+                // c04 = q4+q5;
+                // c05 = q3+q12+q13;
                 document.querySelector(".c01").style.display = "block";
                 document.querySelector(".c02").style.display = "block";
                 document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "block";
-                document.querySelector(".c05").style.display = "block";
+                document.querySelector(".c04").style.display = "none";
+                document.querySelector(".c05").style.display = "none";
             } else if (subject === "NLP") {
                 c01 = q4;
                 c02 = q1+q6;
@@ -226,7 +226,7 @@ Total: ${document.getElementById("total").textContent}`;
         <select id="subject" onchange="toggleInputs(); updateTotals();">
             <option value="">--Select Subject--</option>
             <option value="HPC">High Performance Computing</option>
-            <option value="Deep">Deep Learning</option>
+            <option value="RM">Research Methodlogy</option>
             <option value="NLP">NLP</option>
             <option value="AI">Artificial Intelligence</option>
             <option value="CA">Computer Organization & Architecture(23CST-204)</option>
