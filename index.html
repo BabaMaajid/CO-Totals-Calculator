@@ -99,11 +99,11 @@
 
             let c01 = 0, c02 = 0, c03 = 0, c04 = 0, c05 = 0;
 
-            if (subject === "HPC") {
-                c01 = q1+q4+q5;
-                c02 = q2+q3+q7+q8;
-                c03 = q6+q10+q12+q13;
-                c04=  q9+q11;
+            if (subject === "AG") {
+                c01 = q1+q2;
+                c02 = q3+q4+q5+q6;
+                c03 = q7+q8+q9+q10+q11;
+                c04=  q12+q13;
                 document.querySelector(".c01").style.display = "block";
                 document.querySelector(".c02").style.display = "block";
                 document.querySelector(".c03").style.display = "block";
@@ -225,7 +225,7 @@ Total: ${document.getElementById("total").textContent}`;
         <label for="subject">Select Subject:</label>
         <select id="subject" onchange="toggleInputs(); updateTotals();">
             <option value="">--Select Subject--</option>
-            <option value="HPC">High Performance Computing</option>
+            <option value="AG">Agile Development Methodlogies</option>
             <option value="RM">Research Methodlogy</option>
             <option value="NLP">NLP</option>
             <option value="AI">Artificial Intelligence</option>
