@@ -99,11 +99,12 @@
 
             let c01 = 0, c02 = 0, c03 = 0, c04 = 0, c05 = 0;
 
-            if (subject === "AG") {
-                c01 = q1+q2;
-                c02 = q3+q4+q5+q6;
-                c03 = q7+q8+q9+q10+q11;
-                c04=  q12+q13;
+            if (subject === "GENAI") {
+                c01 = q1+q10;
+                c02 = q6;
+                c03 = q4+q12+q13;
+                c04 =  q2+q5+q7+q9+q11;
+                c05 =q8+q3;
                 document.querySelector(".c01").style.display = "block";
                 document.querySelector(".c02").style.display = "block";
                 document.querySelector(".c03").style.display = "block";
