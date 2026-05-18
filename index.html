@@ -99,17 +99,16 @@
 
             let c01 = 0, c02 = 0, c03 = 0, c04 = 0, c05 = 0;
 
-            if (subject === "GENAI") {
-                c01 = q1+q10;
-                c02 = q6;
-                c03 = q4+q12+q13;
-                c04 = q2+q5+q7+q9+q11;
-                c05 = q8+q3;
+            if (subject === "PE") {
+                c01 = q1+q3+q6+q9+q10;
+                c02 = q2+q7+q11;
+                c03 = q4+q8;
+                c04 = q5+q12+q13;
                 document.querySelector(".c01").style.display = "block";
                 document.querySelector(".c02").style.display = "block";
                 document.querySelector(".c03").style.display = "block";
                 document.querySelector(".c04").style.display = "block";
-                document.querySelector(".c05").style.display = "block";
+                document.querySelector(".c05").style.display = "none";
             
             } else if (subject === "RM") {
                 
@@ -226,7 +225,7 @@ Total: ${document.getElementById("total").textContent}`;
         <label for="subject">Select Subject:</label>
         <select id="subject" onchange="toggleInputs(); updateTotals();">
             <option value="">--Select Subject--</option>
-            <option value="GENAI">GEnAI</option>
+            <option value="PE">Professional Ethics and Human Values</option>
             <option value="RM">Research Methodlogy</option>
             <option value="NLP">NLP</option>
             <option value="AI">Artificial Intelligence</option>
