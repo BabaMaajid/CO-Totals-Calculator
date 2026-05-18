@@ -1,264 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CO Totals Calculator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        form {
-            max-width: 400px;
-            margin: 0 auto 20px;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            display: block;
-            margin: 10px 0;
-        }
-        input[type="number"], select, button {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            margin-top: 10px;
-            cursor: pointer;
-        }
-        .inputs {
-            display: none;
-        }
-        .results {
-            display: none;
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .result-item {
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 4px;
-            color: #fff;
-            font-weight: bold;
-        }
-        .c01 { background-color: #2196f4; }
-        .c02 { background-color: #2196f3; }
-        .c03 { background-color: #ff9800; }
-        .c04 { background-color: #9c27b0; }
-        .c05 { background-color: #673ab7; }
-        .total { background-color: #f44336; }
-.copyright {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 12px;
-            color: #555;
-        }
-    </style>
-    <script>
-        function updateTotals() {
-            let q1 = parseFloat(document.getElementById("q1").value) || 0;
-            let q2 = parseFloat(document.getElementById("q2").value) || 0;
-            let q3 = parseFloat(document.getElementById("q3").value) || 0;
-            let q4 = parseFloat(document.getElementById("q4").value) || 0;
-            let q5 = parseFloat(document.getElementById("q5").value) || 0;
-            let q6 = parseFloat(document.getElementById("q6").value) || 0;
-            let q7 = parseFloat(document.getElementById("q7").value) || 0;
-            let q8 = parseFloat(document.getElementById("q8").value) || 0;
-            let q9 = parseFloat(document.getElementById("q9").value) || 0;
-            let q10 = parseFloat(document.getElementById("q10").value) || 0;
-            let q11 = parseFloat(document.getElementById("q11").value) || 0;
-            let q12 = parseFloat(document.getElementById("q12").value) || 0;
-            let q13 = parseFloat(document.getElementById("q13").value) || 0;
-
-            let subject = document.getElementById("subject").value;
-            let resultsContainer = document.querySelector(".results");
-
-            if (!subject) {
-                resultsContainer.style.display = "none";
-                return;
-            }
-
-            resultsContainer.style.display = "block";
-
-            let c01 = 0, c02 = 0, c03 = 0, c04 = 0, c05 = 0;
-
-            if (subject === "PE") {
-                c01 = q1+q3+q6+q9+q10;
-                c02 = q2+q7+q11;
-                c03 = q4+q8;
-                c04 = q5+q12+q13;
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "block";
-                document.querySelector(".c05").style.display = "none";
-            
-            } else if (subject === "RM") {
-                
-                c01 = q3+q5+q7+q8+q9+q11+q10;
-                c02 = q1+q4+q12+q13;
-                c03 = q2+q6;
-                // c04 = q4+q5;
-                // c05 = q3+q12+q13;
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "none";
-                document.querySelector(".c05").style.display = "none";
-            } else if (subject === "NLP") {
-                c01 = q1+q4;
-                c02 = q3+q6;
-                c03 = q5+q12+q13;
-                c04 = q7+q8+q9+q10+q2;
-                c05 = q11;
-    
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "block";
-                document.querySelector(".c05").style.display = "block";
-            } else if (subject === "AI") {
-                c01 = q2 + q6 + q10;
-                c02 = q1 + q5 + q11 + q12 + q13+ q3;
-                c03 = q4 + q8 + q9;
-                c04 = q7;
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "block";
-                document.querySelector(".c05").style.display = "none";
-            } else if (subject === "CA") {
-                c01 = q1+q2+q3+q4;
-                c02 = q5 + q6+q8+q9;
-                c03 =q7+q13+q12+q10+q11;
-                // c04= q7+q9;
-                // c05 = q4+q12+q13;
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "none";
-                document.querySelector(".c05").style.display = "none";
-            }
-             else if (subject === "Python") {
-                c01 = q1+q6;
-                c02 = q7 +q8+q10;
-                c03 =q2+q9;
-                c04= q11;
-                c05 = q12+q13+q3+q4+q5;
-                document.querySelector(".c01").style.display = "block";
-                document.querySelector(".c02").style.display = "block";
-                document.querySelector(".c03").style.display = "block";
-                document.querySelector(".c04").style.display = "block";
-                document.querySelector(".c05").style.display = "block";
-            }
-            
-            
-            document.getElementById("c01").textContent = c01;
-            document.getElementById("c02").textContent = c02;
-            document.getElementById("c03").textContent = c03;
-            document.getElementById("c04").textContent = c04;
-            document.getElementById("c05").textContent = c05;
-            document.getElementById("total").textContent = c01 + c02 + c03 + c04 + c05;
-        }
-            
-          
-        function resetForm() {
-    // Reset all input fields, but keep the subject selection intact
-    let inputs = document.querySelectorAll(".inputs input[type='number']");
-    inputs.forEach(input => input.value = "");
-    
-    // Optionally, hide results until new calculations are done
-    document.querySelector(".results").style.display = "none";
-    
-    // Keep the subject dropdown value as is
-    document.querySelector(".results").style.display = "none";
-    updateTotals();  // Recalculate totals with the current subject selection
-}
-
-
-        function copyResults() {
-            let results = `
-C01: ${document.getElementById("c01").textContent}
-C02: ${document.getElementById("c02").textContent}
-C03: ${document.getElementById("c03").textContent}
-C04: ${document.getElementById("c04").textContent}
-C05: ${document.getElementById("c05").textContent}
-Total: ${document.getElementById("total").textContent}`;
-            navigator.clipboard.writeText(results).then(() => {
-                alert("Results copied to clipboard!");
-            });
-        }
-
-        function toggleInputs() {
-            let subject = document.getElementById("subject").value;
-            let inputsContainer = document.querySelector(".inputs");
-
-            if (subject) {
-                inputsContainer.style.display = "block";
-            } else {
-                inputsContainer.style.display = "none";
-                document.querySelector(".results").style.display = "none";
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CO Totals Calculator</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f9f9f9; padding: 16px; }
+    h1 { font-size: 20px; font-weight: 600; color: #333; text-align: center; margin-bottom: 16px; }
+    .card {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    label { display: block; font-size: 14px; color: #555; margin-bottom: 4px; }
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      background: #fff;
+    }
+    .q-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .q-item label { font-size: 13px; color: #666; margin-bottom: 2px; }
+    .q-item input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #fafafa;
+    }
+    .q-item input:focus { outline: none; border-color: #2196f3; }
+    .btn-row { display: flex; gap: 10px; margin-top: 14px; }
+    .btn-row button {
+      flex: 1;
+      padding: 12px;
+      font-size: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background: #fff;
+      cursor: pointer;
+    }
+    .btn-row button:active { transform: scale(0.98); }
+    .btn-copy {
+      background: #e3f2fd !important;
+      color: #1565c0 !important;
+      border-color: #90caf9 !important;
+    }
+    .inputs-hidden { display: none; }
+    .results-section { display: none; }
+    .results-grid { display: flex; flex-direction: column; gap: 8px; }
+    .result-pill {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .label-text { font-size: 13px; font-weight: 400; opacity: 0.85; }
+    .r-c01 { background: #E3F2FD; color: #0D47A1; }
+    .r-c02 { background: #E8F5E9; color: #1B5E20; }
+    .r-c03 { background: #FFF3E0; color: #E65100; }
+    .r-c04 { background: #EDE7F6; color: #4527A0; }
+    .r-c05 { background: #E0F2F1; color: #004D40; }
+    .r-total { background: #FFEBEE; color: #B71C1C; }
+    .copy-toast {
+      display: none;
+      text-align: center;
+      font-size: 13px;
+      color: #2e7d32;
+      padding: 8px;
+      margin-top: 8px;
+    }
+    .copyright {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #888;
+    }
+  </style>
 </head>
 <body>
-    <h1>CO Totals Calculator</h1>
-    <form>
-        <label for="subject">Select Subject:</label>
-        <select id="subject" onchange="toggleInputs(); updateTotals();">
-            <option value="">--Select Subject--</option>
-            <option value="PE">Professional Ethics and Human Values</option>
-            <option value="RM">Research Methodlogy</option>
-            <option value="NLP">NLP</option>
-            <option value="AI">Artificial Intelligence</option>
-            <option value="CA">Computer Organization & Architecture(23CST-204)</option>
-             <option value="Python">Python</option>
-        </select>
-        <button type="button" onclick="resetForm()">Reset</button>
-        
+  <h1>CO Totals Calculator</h1>
 
-        <div class="inputs">
-            <label>Q1: <input type="number" id="q1" step="any" oninput="updateTotals()"></label>
-            <label>Q2: <input type="number" id="q2" step="any" oninput="updateTotals()"></label>
-            <label>Q3: <input type="number" id="q3" step="any" oninput="updateTotals()"></label>
-            <label>Q4: <input type="number" id="q4" step="any" oninput="updateTotals()"></label>
-            <label>Q5: <input type="number" id="q5" step="any" oninput="updateTotals()"></label>
-            <label>Q6: <input type="number" id="q6" step="any" oninput="updateTotals()"></label>
-            <label>Q7: <input type="number" id="q7" step="any" oninput="updateTotals()"></label>
-            <label>Q8: <input type="number" id="q8" step="any" oninput="updateTotals()"></label>
-            <label>Q9: <input type="number" id="q9" step="any" oninput="updateTotals()"></label>
-            <label>Q10: <input type="number" id="q10" step="any" oninput="updateTotals()"></label>
-            <label>Q11: <input type="number" id="q11" step="any" oninput="updateTotals()"></label>
-            <label>Q12: <input type="number" id="q12" step="any" oninput="updateTotals()"></label>
-            <label>Q13: <input type="number" id="q13" step="any" oninput="updateTotals()"></label>
-        </div>
-    </form>
-    <div class="results">
-        <div class="result-item c01">C01: <span id="c01"></span></div>
-        <div class="result-item c02">C02: <span id="c02"></span></div>
-        <div class="result-item c03">C03: <span id="c03"></span></div>
-        <div class="result-item c04">C04: <span id="c04"></span></div>
-        <div class="result-item c05">C05: <span id="c05"></span></div>
-        <div class="result-item total">Total: <span id="total"></span></div>
+  <div class="card">
+    <label for="subject">Select subject</label>
+    <select id="subject" onchange="toggleInputs(); updateTotals();">
+      <option value="">— Select subject —</option>
+      <option value="PE">Professional Ethics and Human Values</option>
+      <option value="RM">Research Methodology</option>
+      <option value="NLP">NLP</option>
+      <option value="AI">Artificial Intelligence</option>
+      <option value="CA">Computer Organization &amp; Architecture (23CST-204)</option>
+      <option value="Python">Python</option>
+    </select>
+
+    <div class="inputs-hidden" id="inputs-section">
+      <div class="q-grid">
+        <div class="q-item"><label>Q1</label><input type="number" id="q1" step="any" inputmode="decimal" oninput="updateTotals()"></div>
+        <div class="q-item"><label>Q2</label><input type="number" id="q2" step="any" inputmode="decimal" oninput="updateTotals()"></div>
+        <div class="q-item"><label>Q3</label><input type="number" id="q3" step="any" inputmode="decimal" oninput="updateTotals()"></div>
+        <div class="q-item"><label>Q4</label><input type="number" id="q4" step="any" inputmode="decimal" oninput="updateTotals()"></div>
+        <div class="q-item"><label>Q5</label><input type="number" id="q5" step="any" inputmode="decimal" oninput="updateTotals()"></div>
+        <div class="q-item"><label>Q6</label><input type="number" id="q6" step="any" inputmode="decimal" oninput="updateTotals()"></div>
+        <div class="q-item"><label>Q7</label><input type="number" id="q7" step="any" inputmode="decimal" oninput="updateTotals()"></div>
+        <div class="q-item"><label>Q8</label><input type="number" id="q8" step="any" inputmode="decimal" oninput="updateTotals()"></div>
+        <div class="q-item"><label>Q9</label><input type="number" id="q9" step="any" inputmode="decimal" oninput="updateTotals()"></div>
+        <div class="q-item"><label>Q10</label><input type="number" id="q10" step="any" inputmode="decimal" oninput="updateTotals()"></div>
+        <div class="q-item"><label>Q11</label><input type="number" id="q11" step="any" inputmode="decimal" oninput="updateTotals()"></div>
+        <div class="q-item"><label>Q12</label><input type="number" id="q12" step="any" inputmode="decimal" oninput="updateTotals()"></div>
+        <div class="q-item"><label>Q13</label><input type="number" id="q13" step="any" inputmode="decimal" oninput="updateTotals()"></div>
+      </div>
+      <div class="btn-row">
+        <button onclick="resetForm()">↺ Reset</button>
+        <button class="btn-copy" onclick="copyResults()">⎘ Copy results</button>
+      </div>
     </div>
-<div class="copyright">© Dr. Maajid Bashir UIC CU 2024</div>
+  </div>
+
+  <div class="results-section card" id="results-section">
+    <div class="results-grid">
+      <div class="result-pill r-c01" id="pill-c01"><span class="label-text">C01</span><span id="c01">0</span></div>
+      <div class="result-pill r-c02" id="pill-c02"><span class="label-text">C02</span><span id="c02">0</span></div>
+      <div class="result-pill r-c03" id="pill-c03"><span class="label-text">C03</span><span id="c03">0</span></div>
+      <div class="result-pill r-c04" id="pill-c04"><span class="label-text">C04</span><span id="c04">0</span></div>
+      <div class="result-pill r-c05" id="pill-c05"><span class="label-text">C05</span><span id="c05">0</span></div>
+      <div class="result-pill r-total"><span class="label-text">Total</span><span id="total">0</span></div>
+    </div>
+    <div class="copy-toast" id="copy-toast">Copied to clipboard ✓</div>
+  </div>
+
+  <p class="copyright">© Dr. Maajid Bashir UIC CU 2024</p>
+
+  <script>
+    function v(id) { return parseFloat(document.getElementById(id).value) || 0; }
+
+    function updateTotals() {
+      let q1=v('q1'),q2=v('q2'),q3=v('q3'),q4=v('q4'),q5=v('q5'),q6=v('q6'),
+          q7=v('q7'),q8=v('q8'),q9=v('q9'),q10=v('q10'),q11=v('q11'),q12=v('q12'),q13=v('q13');
+      let subject = document.getElementById('subject').value;
+      let rs = document.getElementById('results-section');
+      if (!subject) { rs.style.display = 'none'; return; }
+      rs.style.display = 'block';
+
+      let c01=0, c02=0, c03=0, c04=0, c05=0;
+      let show = [false, false, false, false, false];
+
+      if (subject === 'PE') {
+        c01=q1+q3+q6+q9+q10; c02=q2+q7+q11; c03=q4+q8; c04=q5+q12+q13;
+        show = [true, true, true, true, false];
+      } else if (subject === 'RM') {
+        c01=q3+q5+q7+q8+q9+q11+q10; c02=q1+q4+q12+q13; c03=q2+q6;
+        show = [true, true, true, false, false];
+      } else if (subject === 'NLP') {
+        c01=q1+q4; c02=q3+q6; c03=q5+q12+q13; c04=q7+q8+q9+q10+q2; c05=q11;
+        show = [true, true, true, true, true];
+      } else if (subject === 'AI') {
+        c01=q2+q6+q10; c02=q1+q5+q11+q12+q13+q3; c03=q4+q8+q9; c04=q7;
+        show = [true, true, true, true, false];
+      } else if (subject === 'CA') {
+        c01=q1+q2+q3+q4; c02=q5+q6+q8+q9; c03=q7+q13+q12+q10+q11;
+        show = [true, true, true, false, false];
+      } else if (subject === 'Python') {
+        c01=q1+q6; c02=q7+q8+q10; c03=q2+q9; c04=q11; c05=q12+q13+q3+q4+q5;
+        show = [true, true, true, true, true];
+      }
+
+      let vals = [c01, c02, c03, c04, c05];
+      ['c01','c02','c03','c04','c05'].forEach((id, i) => {
+        document.getElementById(id).textContent = vals[i];
+        document.getElementById('pill-' + id).style.display = show[i] ? 'flex' : 'none';
+      });
+      document.getElementById('total').textContent = c01+c02+c03+c04+c05;
+    }
+
+    function toggleInputs() {
+      let subject = document.getElementById('subject').value;
+      document.getElementById('inputs-section').style.display = subject ? 'block' : 'none';
+      if (!subject) document.getElementById('results-section').style.display = 'none';
+    }
+
+    function resetForm() {
+      document.querySelectorAll('#inputs-section input[type="number"]').forEach(i => i.value = '');
+      document.getElementById('results-section').style.display = 'none';
+      updateTotals();
+    }
+
+    function copyResults() {
+      let text = `C01: ${document.getElementById('c01').textContent}
+C02: ${document.getElementById('c02').textContent}
+C03: ${document.getElementById('c03').textContent}
+C04: ${document.getElementById('c04').textContent}
+C05: ${document.getElementById('c05').textContent}
+Total: ${document.getElementById('total').textContent}`;
+      navigator.clipboard.writeText(text).then(() => {
+        let t = document.getElementById('copy-toast');
+        t.style.display = 'block';
+        setTimeout(() => t.style.display = 'none', 2000);
+      });
+    }
+  </script>
 </body>
 </html>
