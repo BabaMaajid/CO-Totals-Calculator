@@ -100,7 +100,7 @@
     <select id="subject" onchange="toggleInputs(); updateTotals();">
       <option value="">— Select subject —</option>
       <option value="PE">Professional Ethics and Human Values</option>
-      <option value="RM">Research Methodology</option>
+      <option value="PR">Computational Intelligence and Pattern Recognition</option>
       <option value="NLP">NLP</option>
       <option value="AI">Artificial Intelligence</option>
       <option value="CA">Computer Organization &amp; Architecture (23CST-204)</option>
@@ -161,7 +161,7 @@
       if (subject === 'PE') {
         c01=q1+q3+q6+q9+q10; c02=q2+q7+q11; c03=q4+q8; c04=q5+q12+q13;
         show = [true, true, true, true, false];
-      } else if (subject === 'RM') {
+      } else if (subject === 'PR') {
         c01=q3+q5+q7+q8+q9+q11+q10; c02=q1+q4+q12+q13; c03=q2+q6;
         show = [true, true, true, false, false];
       } else if (subject === 'NLP') {
